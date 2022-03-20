@@ -32,6 +32,10 @@ public class ValidatorBean implements Serializable {
 	
 	public void validateEmail(FacesContext fc, UIComponent uic, Object object) throws ValidatorException {
 		String value = (String) object;
+		if(value.isEmpty()) {
+			FacesMessage fm = new FacesMessage("Email is missing");
+			throw new ValidatorException(fm);
+		}
 		if (!Pattern.matches("^[a-zA-Z0-9_.+-]+@[a-zA-z0-9- ]+\\.[a-zA-z0-9-.]+$", value)) {
 			FacesMessage fm = new FacesMessage("Wrong email input");
 			throw new ValidatorException(fm);
