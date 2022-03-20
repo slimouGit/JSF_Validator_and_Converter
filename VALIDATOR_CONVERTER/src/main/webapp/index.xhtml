@@ -41,5 +41,19 @@
 			</p:panelGrid>
 		</h:form>
 	</p:panel>
+	<p:panel header="Validation Bean Method">
+		<h:form>
+			<p:panelGrid columns="2" styleClass="ui-noborder">			
+			<p:inputText 
+			id="email_3"
+			label="#{msg['email_3']}" 
+			value="#{validatorBean.email}"  
+			validator="#{validatorBean.isEmail}" 
+			validatorMessage="#{msg['email_3']}"/>			
+			<h:message for="email_3"/>
+			<p:commandButton value="Action" action="#{validatorBean.showEmail}"/>
+			</p:panelGrid>
+		</h:form>
+	</p:panel>
 </h:body>
 </html>

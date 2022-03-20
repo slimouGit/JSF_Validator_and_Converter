@@ -1,8 +1,13 @@
 package resources;
 
 import java.io.Serializable;
+import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -24,6 +29,17 @@ public class ValidatorBean implements Serializable {
 	public void showEmail() {
 		System.out.println("Email: ");		
 		System.out.println(this.email);
+	}
+	
+	public void isEmail(FacesContext fc, UIComponent uic, Object object) throws ValidatorException {
+		System.out.println("Email-Validator");	
+		String value = (String) object;
+		System.out.println("Value " + value);	
+
+		if (!Pattern.matches("^[a-zA-Z0-9_.+-]+@[a-zA-z0-9- ]+\\.[a-zA-z0-9-.]+$", value)) {
+			FacesMessage fm = new FacesMessage("Wrong email input");
+			throw new ValidatorException(fm);
+		}  		
 	}
 
 	public String getGreeting() {
