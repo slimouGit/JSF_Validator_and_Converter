@@ -47,11 +47,10 @@
 			<p:inputText 
 			id="email_3"
 			label="#{msg['email_3']}" 
-			value="#{validatorBean.email}"  
-			validator="#{validatorBean.isEmail}" 
-			validatorMessage="#{msg['email_3']}"/>			
-			<h:message for="email_3"/>
-			<p:commandButton value="Action" action="#{validatorBean.showEmail}"/>
+			value="#{validatorBean.email}" 
+			validator="#{validatorBean.validateEmail}"/>			
+			<h:message for="email_3" id="errmsg"/>
+			<p:commandButton value="Action" update="errmsg" action="#{validatorBean.showEmail}"/>
 			</p:panelGrid>
 		</h:form>
 	</p:panel>

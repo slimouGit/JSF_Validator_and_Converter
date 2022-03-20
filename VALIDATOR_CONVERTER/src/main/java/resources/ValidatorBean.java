@@ -27,15 +27,11 @@ public class ValidatorBean implements Serializable {
 	}
 	
 	public void showEmail() {
-		System.out.println("Email: ");		
-		System.out.println(this.email);
+		System.out.println("Email: " + this.email + " is well formed");
 	}
 	
-	public void isEmail(FacesContext fc, UIComponent uic, Object object) throws ValidatorException {
-		System.out.println("Email-Validator");	
+	public void validateEmail(FacesContext fc, UIComponent uic, Object object) throws ValidatorException {
 		String value = (String) object;
-		System.out.println("Value " + value);	
-
 		if (!Pattern.matches("^[a-zA-Z0-9_.+-]+@[a-zA-z0-9- ]+\\.[a-zA-z0-9-.]+$", value)) {
 			FacesMessage fm = new FacesMessage("Wrong email input");
 			throw new ValidatorException(fm);
